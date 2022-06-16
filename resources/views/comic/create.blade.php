@@ -17,11 +17,11 @@
     </div>
     <div class="mb-3">
         <label for="thumb" class="form-label">Thumb</label>
-        <input type="text" class="form-control" name="thumb" id="thumb" required placeholder="Insert Thumb">
+        <input type="text" class="form-control" name="thumb" id="thumb" placeholder="Insert Thumb" required >
     </div>
     <div class="mb-3">
         <label for="price" class="form-label">Price</label>
-        <input type="number" step="0.01" class="form-control" name="price" id="price" required>
+        <input type="number" step="0.01" class="form-control" name="price" id="price" placeholder="Insert a Price" required>
     </div>
     <div class="mb-3">
         <label for="series" class="form-label">Series</label>
