@@ -1,5 +1,14 @@
 @extends('layout.layout')
 @section('content')
+  <div class="container">
+      <div class="row">
+        @if(session('message'))
+          <div class="alert alert-danger">
+            {{session('message')}}
+          </div>
+        @endif
+      </div>
+  </div>
     <div class="container">
         <div class="row">
             @forelse ($comics as $comic)
@@ -17,7 +26,12 @@
                   </ul>
                   <div class="card-body">
                     <a href=" {{route('comics.show', $comic->id)}} " class="card-link">Explore</a>
-                    <a href="#" class="card-link">Another link</a>
+                    <a href="{{route('comics.edit', $comic->id)}}" class="card-link">Modify</a>
+                    <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+                      @csrf
+                      @method('DELETE')
+                    <button class="btn btn-danger mt-2">Delete Comic</button>
+                  </form>
                   </div>
               </div>
             @empty

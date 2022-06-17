@@ -36,10 +36,25 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'thumb'=>'required',
+                'price'=>'required',
+                'series'=>'required',
+                'sales'=>'required',
+                'type'=>'required',
+            ]
+            );
+
+
         $data = $request->all();
         $new_comic = new Comic();
         $new_comic->fill($data);
         $new_comic->save();
+
+        return redirect()->route('home');
 
         
     }
@@ -64,7 +79,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('edit',compact('comic'));
     }
 
     /**
@@ -76,7 +91,23 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'thumb'=>'required',
+                'price'=>'required',
+                'series'=>'required',
+                'sale_date'=>'required',
+                'type'=>'required'
+            ]
+            );
+
+        $data = $request->all();
+        $comic->fill($data);
+        $comic->save();
+
+        return redirect()->route('home', $comic);
     }
 
     /**
@@ -87,6 +118,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('home',$comic)->with('message',"You Have Deleted : $comic->title");
     }
 }

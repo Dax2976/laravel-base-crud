@@ -17,7 +17,8 @@
     @endif
 
 
-    <form form action="{{route('comics.store')}}" method="POST">
+    <form form action="{{route('comics.update',$comic->id)}}" method="POST" novalidate>
+    @method('PUT')
 
     @csrf
 
